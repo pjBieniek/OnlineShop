@@ -1,4 +1,4 @@
-package com.codecool;
+package com.codecool.controllers;
 
-public class UserEngine {
+public class UserController {
 }
