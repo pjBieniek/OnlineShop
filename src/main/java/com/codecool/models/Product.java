@@ -19,6 +19,6 @@ public class Product {
     }
 
     public String toString(){
-        return "";
+        return "id: " + id + ", name " + name + ", price: " + price + ", amount: " + amount + ", is aviable: " + isAvailable + ", category: " + category;
     }
 }

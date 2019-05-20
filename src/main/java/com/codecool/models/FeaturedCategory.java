@@ -9,4 +9,6 @@ public class FeaturedCategory extends Category{
         super(name);
         this.expirationDate = expirationDate;
     }
+
+    
 }
