@@ -26,6 +26,12 @@ public class Viewer {
         }
     }
 
+    public void displayEntryScreen(){
+        clearScreen();
+        System.out.println("__________ ONLINE SHOP vol 0.1 __________\n");
+        System.out.println();
+    }
+
     public void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -36,11 +42,14 @@ public class Viewer {
         String userInput;
         while (repeat) {
             userInput = scanner.nextLine();
-            if (validator(userInput) == true){
-                repeat = false;
-            }
+            return userInput;
+//            if (validator(userInput) == true){
+//                repeat = false;
+//            }
+//        }
+//        return userInput;
         }
-        return userInput;
+        return "";
     }
 
     public Integer getIntegerInput(){
