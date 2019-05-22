@@ -56,4 +56,35 @@ public class Viewer {
         Integer userInput = Integer.parseInt(scanner.nextLine());
         return userInput;
     }
+
+    public void displayAdminMenu(){
+        display("(1) Create new product category");
+        display("(2) Create new featured product category");
+        display("(3) Deactivate product automatically");
+        display("(4) Create new product");
+        display("(5) Edit product");
+        display("(6) Deactivate product");
+        display("(7) Give limited discount on product");
+        display("(8) See list of ongoing orders");
+        display("(9) Collect feedback from customers");
+    }
+
+    public void displayCustomerMenu(){
+        display("(1) Add to basket");
+        display("(2) Edit product's quantity in basket");
+        display("(3) Delete from basket");
+        display("(4) See basket");
+        display("(5) Place an order");
+        display("(6) See previous orders");
+        display("(7) List all products");
+        display("(8) List products from specific category");
+        display("(9) Check if product is available");
+        display("(10) Rate product");
+        display("(11) Orders statistics");
+    }
+    
+    public void displayCredits(){
+        display("Online shop made by : ");
+        display("Michał, Kacper, Paweł");
+    }
 }
