@@ -82,7 +82,7 @@ public class Viewer {
         display("(10) Rate product");
         display("(11) Orders statistics");
     }
-    
+
     public void displayCredits(){
         display("Online shop made by : ");
         display("Michał, Kacper, Paweł");
