@@ -87,4 +87,9 @@ public class Viewer {
         display("Online shop made by : ");
         display("Michał, Kacper, Paweł");
     }
+    public Float getFloatInput(){
+        Float userInput = Float.parseFloat(scanner.nextLine());
+        return userInput;
+    }
+
 }
