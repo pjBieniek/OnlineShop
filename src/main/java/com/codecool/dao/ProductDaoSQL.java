@@ -1,4 +1,5 @@
 package com.codecool.dao;
 
-public class ProductDaoSQL {
+public class ProductDaoSQL extends ProductDao{
+
 }
