@@ -56,4 +56,10 @@ public class Viewer {
         Integer userInput = Integer.parseInt(scanner.nextLine());
         return userInput;
     }
+
+    public Float getFloatInput(){
+        Float userInput = Float.parseFloat(scanner.nextLine());
+        return userInput;
+    }
+
 }

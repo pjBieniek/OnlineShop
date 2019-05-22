@@ -1,21 +1,18 @@
 package com.codecool.models;
-import java.sql.*;
+import com.codecool.dao.ProductDaoSQL;
+
 
 public class OnlineShop {
     public static void main(String[] args) throws Exception {
         ShopRunner runner = new ShopRunner();
         runner.run();
+        ProductDaoSQL shop = new ProductDaoSQL();
+//        shop.getAllProducts
+        shop.getAllProducts();
+        shop.updateProduct();
+        shop.getAllProducts();
 
-        Connection c = null;
 
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-            System.out.println("Sqlite DB connected");
-        } catch (Exception e){
-            System.out.println("\n...\n");
-            System.out.println(e);
-        }
 
 
     }

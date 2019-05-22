@@ -18,6 +18,10 @@ public class Product {
         this.category = category;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public String toString(){
         return "";
     }
