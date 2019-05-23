@@ -26,8 +26,12 @@ hs_err_pid*
 out/
 target/
 *.iml
+.project
+bin/
+*.db
 
 .vscode
+bin/
 
 Test.java
 *.list*
