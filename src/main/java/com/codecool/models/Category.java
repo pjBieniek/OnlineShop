@@ -28,4 +28,16 @@ public class Category {
     public String toString(){
         return "" + getName() + "" + getId();
     }
+
+    public static class Customer {
+
+
+        private String userName;
+        private Basket basket;
+        private com.codecool.View.Viewer view = new com.codecool.View.Viewer();
+
+        public Customer(Basket basket) {
+            this.basket = basket;
+        }
+    }
 }

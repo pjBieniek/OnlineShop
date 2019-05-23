@@ -77,6 +77,32 @@ public List<Integer> getProductsIds(){
         }
     }
 
+    public List<Integer> getProductsIds(){
+        List<Integer> ids = new ArrayList<>();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:OnlineShopDATA.db");
+
+
+            stmt = c.createStatement();
+            String sql;
+            sql = "SELECT * FROM Product";
+            results = stmt.executeQuery(sql);
+
+            while (results.next()){
+                Integer id = results.getInt("ID");
+                ids.add(id);
+            }
+            results.close();
+            stmt.close();
+            c.close();
+        } catch (Exception e){
+            System.out.println("\n...\n");
+            System.out.println(e);
+        }
+        return ids;
+    }
+
     public void updateProduct(){
         getDataFromUser();
 
@@ -131,7 +157,6 @@ public List<Integer> getProductsIds(){
             view.display(e.getMessage());
         }
     }
-
 
     private void getDataFromUser(){
         view.display("Enter product id: ");
