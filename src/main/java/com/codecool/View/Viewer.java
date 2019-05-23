@@ -3,6 +3,7 @@ package com.codecool.View;
 import com.codecool.models.Category;
 import com.codecool.models.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -90,6 +91,19 @@ public class Viewer {
     public Float getFloatInput(){
         Float userInput = Float.parseFloat(scanner.nextLine());
         return userInput;
+    }
+
+    public void displayTable(List<List<String>> table){
+        List<String> headers = new ArrayList<>();
+        headers.add("ID");
+        headers.add("NAME");
+        headers.add("PRICE");
+        headers.add("AMOUNT");
+        headers.add("isAVAILABLE");
+        headers.add("CATEGORY");
+        PrintTable newTable = new PrintTable(headers,  table , false);
+        String tableToPrint = newTable.printTable();
+        display(tableToPrint);
     }
 
 }
