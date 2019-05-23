@@ -12,8 +12,5 @@ public class OnlineShop {
         shop.updateProduct();
         shop.getAllProducts();
 
-
-
-
     }
 }

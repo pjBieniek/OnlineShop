@@ -1,8 +1,6 @@
 package com.codecool.models;
 
 import com.codecool.View.Viewer;
-import com.codecool.controllers.CustomerController;
-import com.codecool.controllers.CustomerController.*;
 
 public class Customer {
 
@@ -16,9 +14,8 @@ public class Customer {
     }
 
     public void printUserMenu() {
-
-        CustomerController cc = new CustomerController();
         boolean repeat = true;
+        Basket basket = new Basket();
 
         while(repeat) {
             view.clearScreen();
@@ -31,8 +28,7 @@ public class Customer {
             switch (option) {
                 case 1:
 
-//                    Product product = new Product();
-//                    cc.addToBasket(product);
+
             }
         }
     }
