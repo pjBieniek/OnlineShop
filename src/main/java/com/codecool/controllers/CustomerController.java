@@ -4,7 +4,7 @@ import com.codecool.dao.ProductDaoSQL;
 import com.codecool.models.*;
 import com.codecool.View.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class CustomerController {
 
@@ -45,7 +45,15 @@ public class CustomerController {
     }
 
     public void showBasket() {
-        view.display(basket.getProducts());
+        List<List<String>> database;
+        List<Product> products = new ArrayList<>();
+        for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
+            products.add(entry.getKey());
+        }
+//        System.out.println("products: " + products);
+        database = view.productsToString(products);
+        view.displayTable(database);
+        database.remove(database);
     }
 
     public void seePreviousOrders() {
@@ -61,6 +69,7 @@ public class CustomerController {
     }
 
     public void checkAvialability() {
+        Set<String> set = new HashSet<>();
 
     }
 
@@ -73,7 +82,10 @@ public class CustomerController {
     }
 
     public void displayProducts() {
-        pds.getAllProducts();
+        List<List<String>> database;
+        database = view.productsToString(pds.getAllProducts());
+        view.displayTable(database);
+        database.remove(database);
     }
 
 }
