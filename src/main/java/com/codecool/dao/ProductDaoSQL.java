@@ -1,12 +1,13 @@
 package com.codecool.dao;
 
 import com.codecool.View.Viewer;
+import com.codecool.models.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDaoSQL extends ProductDao{
+public class ProductDaoSQL implements ProductDao{
     private Viewer view = new Viewer();
     private ResultSet results;
     private Connection c = null;
@@ -17,6 +18,8 @@ public class ProductDaoSQL extends ProductDao{
     private Integer amount;
     private Boolean isAvailable;
     private String category;
+    private Product newProduct;
+    private List<Product> productsList = new ArrayList<>();
 
 
 public List<Integer> getProductsIds(){
@@ -45,7 +48,7 @@ public List<Integer> getProductsIds(){
     return ids;
 }
 
-    public void getAllProducts(){
+    public List<Product> getAllProducts(){
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:OnlineShopDATA.db");
@@ -62,9 +65,9 @@ public List<Integer> getProductsIds(){
                 Integer amount = results.getInt("AMOUNT");
                 Boolean isAvailable = results.getBoolean("isAVAILABLE");
                 String category = results.getString("CATEGORY");
-
-
-                view.display("id: " + id + "| name: " + name + "| price: " + price + "| amount: " + amount + "| Available?: " + isAvailable + "| category: " + category);
+                newProduct = new Product(name, price, amount, isAvailable, category);
+                productsList.add(newProduct);
+//                view.display("id: " + id + "| name: " + name + "| price: " + price + "| amount: " + amount + "| Available?: " + isAvailable + "| category: " + category);
             }
             results.close();
             stmt.close();
@@ -75,15 +78,16 @@ public List<Integer> getProductsIds(){
         } finally {
             view.display("\n");
         }
+        return productsList;
     }
 
 
-    public void updateProduct(){
+    public void updateProduct(String currentName){
+
         getDataFromUser();
 
         String sql = "UPDATE Product SET NAME = ? , " +
-                "PRICE = ? ,  " + "AMOUNT = ? , " + "isAVAILABLE = ? , " +
-                "CATEGORY = ? WHERE ID = ? ";
+                "PRICE = ? ,  " + "AMOUNT = ? WHERE NAME = ? ";
 
         try {
             Connection conn = this.connect();
@@ -92,9 +96,7 @@ public List<Integer> getProductsIds(){
             pstmt.setString(1, name);
             pstmt.setFloat(2, price);
             pstmt.setInt(3, amount);
-            pstmt.setBoolean(4, isAvailable);
-            pstmt.setString(5, category);
-            pstmt.setInt(6, id);
+            pstmt.setString(4, currentName);
             pstmt.executeUpdate();
         } catch (SQLException e){
             view.display(e.getMessage());
@@ -134,18 +136,12 @@ public List<Integer> getProductsIds(){
     }
 
     private void getDataFromUser(){
-        view.display("Enter product id: ");
-        id = view.getIntegerInput();
         view.display("Enter new name: ");
         name = view.getStringInput();
         view.display("Enter new price: ");
         price = view.getFloatInput();
         view.display("Enter new amount: ");
         amount = view.getIntegerInput();
-        view.display("Enter new availability yes/no: ");
-        isAvailable = (view.getStringInput().equals("yes"));
-        view.display("Enter new category: ");
-        category = view.getStringInput();
     }
 
     private Connection connect(){

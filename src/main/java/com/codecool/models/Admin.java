@@ -2,10 +2,12 @@ package com.codecool.models;
 
 import com.codecool.View.Viewer;
 import com.codecool.controllers.AdminController;
+import com.codecool.dao.ProductDao;
 
 public class Admin {
+    private AdminController shop = new AdminController();
     private Viewer view = new Viewer();
-    private AdminController shop;
+
 
     public Admin(AdminController shop) {
         this.shop = shop;
@@ -17,6 +19,7 @@ public class Admin {
 
         while(repeat) {
             view.clearScreen();
+            shop.data();
             view.displayAdminMenu();
             int option = view.getIntegerInput();
 
@@ -37,7 +40,6 @@ public class Admin {
                     view.display("Enter product name: ");
                     String name = view.getStringInput();
                     shop.editProduct(name);
-
                     break;
                 case 6:
 
