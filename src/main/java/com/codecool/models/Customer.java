@@ -21,10 +21,7 @@ public class Customer {
 
         while(repeat) {
             view.clearScreen();
-            view.display("Select from options below using numbers:\n\n[ 1 ] Add product to to basket\n[ 2 ] Edit product quantity"
-                    + "\n[ 3 ] Delete product from basket\n[ 4 ] Show contents of basket\n[ 5 ] Place Your order\n[ 6 ] View previous orders"
-                    + "\n[ 7 ] Show available products\n[ 8 ] Show category\n[ 9 ] Check Availability\n[ 10 ] Rate product"
-                    + "\n[ 11 ] Show Statistics\n[ 12 ] Exit\n\nYour choice: ");
+            view.displayCustomerMenu();
             int option = view.getIntegerInput();
 
             switch (option) {
