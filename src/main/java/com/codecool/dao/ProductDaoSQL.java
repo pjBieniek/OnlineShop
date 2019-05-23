@@ -1,10 +1,14 @@
 package com.codecool.dao;
 
 import com.codecool.View.Viewer;
+import com.codecool.models.Category;
+import com.codecool.models.Product;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ProductDaoSQL extends ProductDao{
     private Viewer view = new Viewer();
@@ -18,32 +22,6 @@ public class ProductDaoSQL extends ProductDao{
     private Boolean isAvailable;
     private String category;
 
-
-public List<Integer> getProductsIds(){
-    List<Integer> ids = new ArrayList<>();
-    try {
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:OnlineShopDATA.db");
-
-
-        stmt = c.createStatement();
-        String sql;
-        sql = "SELECT * FROM Product";
-        results = stmt.executeQuery(sql);
-
-        while (results.next()){
-            Integer id = results.getInt("ID");
-            ids.add(id);
-        }
-        results.close();
-        stmt.close();
-        c.close();
-    } catch (Exception e){
-        System.out.println("\n...\n");
-        System.out.println(e);
-    }
-    return ids;
-}
 
     public void getAllProducts(){
         try {
@@ -75,6 +53,43 @@ public List<Integer> getProductsIds(){
         } finally {
             view.display("\n");
         }
+    }
+
+    public Product getProductById(Integer number) {
+         Integer id = 0;
+         String name = "";
+         BigDecimal price = BigDecimal.valueOf(0);
+         Integer amount = 0;
+         Boolean isAvailable = false;
+         String category = "";
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:OnlineShopDATA.db");
+
+            stmt = c.createStatement();
+            String sql;
+            sql = "SELECT * FROM Product WHERE ID=" + number;
+            results = stmt.executeQuery(sql);
+
+            while (results.next()){
+                id = results.getInt("ID");
+                name = results.getString("NAME");
+                price = results.getBigDecimal("PRICE");
+                amount = results.getInt("AMOUNT");
+                isAvailable = results.getBoolean("isAVAILABLE");
+                category = results.getString("CATEGORY");
+
+            }
+            results.close();
+            stmt.close();
+            c.close();
+        } catch (Exception e){
+            System.out.println("\n...\n");
+            System.out.println(e);
+        }
+        Category cat = new Category(category);
+        Product product = new Product(id, name, price, amount, isAvailable, cat);
+        return product;
     }
 
     public List<Integer> getProductsIds(){

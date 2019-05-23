@@ -23,7 +23,7 @@ public class Viewer {
 
     public void display(Map<Product, Integer> content){
         for (Map.Entry<Product, Integer> entry : content.entrySet()) {
-            System.out.println("Amount of: " + entry.getKey() + "is " + entry.getValue());
+            System.out.println(entry.getValue() + " copies of: " + entry.getKey().getSimpleName());
         }
     }
 

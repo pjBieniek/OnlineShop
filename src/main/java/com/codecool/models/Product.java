@@ -15,8 +15,21 @@ public class Product implements Validator {
     private Boolean isAvailable;
     private Category category;
 
+    public Product() {
+
+    }
+
     public Product(String name, BigDecimal price, Integer amount, Boolean isAvailable, Category category) {
         id = generateId();
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+        this.isAvailable = isAvailable;
+        this.category = category;
+    }
+
+    public Product(Integer id, String name, BigDecimal price, Integer amount, Boolean isAvailable, Category category) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.amount = amount;
@@ -48,5 +61,57 @@ public class Product implements Validator {
         int max = 99999;
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
+    }
+
+    public String getSimpleName() {
+        return "id: " + id + ", name: " + name + ", amount: " + amount;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setAvailable(Boolean available) {
+        isAvailable = available;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public Boolean getAvailable() {
+        return isAvailable;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setAmount(Integer number) {
+        amount = number;
     }
 }
