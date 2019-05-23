@@ -8,6 +8,9 @@ import com.codecool.models.Customer;
 import com.codecool.models.FeaturedCategory;
 import com.codecool.models.Product;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AdminController {
     ProductDaoSQL sql = new ProductDaoSQL();
     Viewer view = new Viewer();
@@ -53,6 +56,9 @@ public class AdminController {
     }
 
     public void data(){
-        view.displayTable(view.productsToString(sql.getAllProducts()));
+        List<List<String>> database;
+        database = view.productsToString(sql.getAllProducts());
+        view.displayTable(database);
+        database.remove(database);
     }
 }

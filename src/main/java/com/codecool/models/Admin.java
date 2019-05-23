@@ -15,11 +15,11 @@ public class Admin {
 
     public void handleAdminMenu(){
         boolean repeat = true;
+        shop.data();
 
 
         while(repeat) {
             view.clearScreen();
-            shop.data();
             view.displayAdminMenu();
             int option = view.getIntegerInput();
 
