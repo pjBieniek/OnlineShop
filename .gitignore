@@ -28,6 +28,7 @@ target/
 *.iml
 *.db
 .vscode
+bin/
 
 Test.java
 *.list*

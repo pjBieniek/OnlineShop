@@ -15,7 +15,7 @@ public class Viewer {
     }
 
     public void display(List<Product> content){
-        for (Object element : content){
+        for (Product element : content){
             System.out.println(element);
         }
     }
