@@ -23,7 +23,7 @@ public class Basket {
     }
 
     public void deleteProduct(Product product){
-        products.entrySet().removeIf(entry -> entry.getValue().equals(product));
+        products.remove(product);
     }
 
     public Map<Product, Integer> showBasket() {

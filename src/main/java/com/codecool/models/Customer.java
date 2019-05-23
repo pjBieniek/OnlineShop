@@ -36,7 +36,7 @@ public class Customer {
                     cc.editProductQuantity();
                     break;
                 case 3:
-
+                    cc.deleteFromBasket();
                     break;
                 case 4:
                     cc.showBasket();
@@ -48,7 +48,7 @@ public class Customer {
 
                     break;
                 case 7:
-
+                    cc.displayProducts();
                     break;
                 case 8:
 
@@ -65,7 +65,6 @@ public class Customer {
                 case 12:
                     repeat = false;
                     break;
-
 
             }
         }

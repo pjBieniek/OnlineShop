@@ -72,7 +72,7 @@ public class CustomerController {
 
     }
 
-    private void displayProducts() {
+    public void displayProducts() {
         pds.getAllProducts();
     }
 
