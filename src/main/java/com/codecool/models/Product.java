@@ -2,7 +2,7 @@ package com.codecool.models;
 
 import java.util.List;
 import java.util.Random;
-import java.Math.BigDecimal;
+import java.math.BigDecimal;
 
 import com.codecool.dao.ProductDaoSQL;
 
@@ -13,9 +13,11 @@ public class Product implements Validator {
     private BigDecimal price;
     private Integer amount;
     private Boolean isAvailable;
-    private String category;
+    private Category category;
 
-    public Product(String name, BigDecimal price, Integer amount, Boolean isAvailable, String category) {
+    public Product(){}
+
+    public Product(String name, BigDecimal price, Integer amount, Boolean isAvailable, Category category) {
         id = generateId();
         this.name = name;
         this.price = price;
@@ -49,6 +51,10 @@ public class Product implements Validator {
             }
         }
         return randomId;
+    }
+
+    public String getSimpleName() {
+        return "id: " + id + ", name: " + name + ", amount: " + amount;
     }
 
     private int getRandomNumber() {
