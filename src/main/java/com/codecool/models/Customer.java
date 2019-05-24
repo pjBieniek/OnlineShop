@@ -29,16 +29,17 @@ public class Customer {
 
             switch (option) {
                 case 1:
-
+                    cc.addToBasket();
                     break;
                 case 2:
-
+                    cc.showBasket();
+                    cc.editProductQuantity();
                     break;
                 case 3:
-
+                    cc.deleteFromBasket();
                     break;
                 case 4:
-
+                    cc.showBasket();
                     break;
                 case 5:
 
@@ -47,7 +48,7 @@ public class Customer {
 
                     break;
                 case 7:
-
+                    cc.displayProducts();
                     break;
                 case 8:
 
@@ -64,7 +65,6 @@ public class Customer {
                 case 12:
                     repeat = false;
                     break;
-
 
             }
         }
