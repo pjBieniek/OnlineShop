@@ -45,15 +45,11 @@ public class CustomerController {
     }
 
     public void showBasket() {
-        List<List<String>> database;
-        List<Product> products = new ArrayList<>();
+
         for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
-            products.add(entry.getKey());
+            view.display("\n" + entry.getValue() + " pieces of: " + entry.getKey().getName() + "\n");
         }
-//        System.out.println("products: " + products);
-        database = view.productsToString(products);
-        view.displayTable(database);
-        database.remove(database);
+
     }
 
     public void seePreviousOrders() {

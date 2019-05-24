@@ -64,11 +64,11 @@ public List<Integer> getProductsIds(){
             while (results.next()){
                 Integer id = results.getInt("ID");
                 String name = results.getString("NAME");
-                Float price = results.getFloat("PRICE");
+                BigDecimal price = results.getBigDecimal("PRICE");
                 Integer amount = results.getInt("AMOUNT");
                 Boolean isAvailable = results.getBoolean("isAVAILABLE");
                 String category = results.getString("CATEGORY");
-                newProduct = new Product(name, price, amount, isAvailable, category);
+                newProduct = new Product(id, name, price, amount, isAvailable, new Category(category));
                 productsList.add(newProduct);
 //                view.display("id: " + id + "| name: " + name + "| price: " + price + "| amount: " + amount + "| Available?: " + isAvailable + "| category: " + category);
             }
@@ -80,6 +80,15 @@ public List<Integer> getProductsIds(){
             System.out.println(e);
         }
         return productsList;
+    }
+
+    public Product getProductById(Integer number) {
+        for (Product product : productsList) {
+            if (product.getId() == number) {
+                return product;
+            }
+        }
+        return null;
     }
 
 
