@@ -1,8 +1,10 @@
 package com.codecool.dao;
 
 import com.codecool.View.Viewer;
+import com.codecool.models.Category;
 import com.codecool.models.Product;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ public class ProductDaoSQL implements ProductDao{
     private Statement stmt = null;
     private Integer id;
     private String name;
-    private Float price;
+    private BigDecimal price;
     private Integer amount;
     private Boolean isAvailable;
     private String category;
@@ -53,6 +55,7 @@ public List<Integer> getProductsIds(){
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:OnlineShopDATA.db");
 
+
             stmt = c.createStatement();
             String sql;
             sql = "SELECT * FROM Product";
@@ -75,8 +78,6 @@ public List<Integer> getProductsIds(){
         } catch (Exception e){
             System.out.println("\n...\n");
             System.out.println(e);
-        } finally {
-            view.display("\n");
         }
         return productsList;
     }
@@ -94,7 +95,7 @@ public List<Integer> getProductsIds(){
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, name);
-            pstmt.setFloat(2, price);
+            pstmt.setBigDecimal(2, price);
             pstmt.setInt(3, amount);
             pstmt.setString(4, currentName);
             pstmt.executeUpdate();

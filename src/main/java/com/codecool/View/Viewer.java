@@ -3,6 +3,7 @@ package com.codecool.View;
 import com.codecool.models.Category;
 import com.codecool.models.Product;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class Viewer {
 
     public void display(Map<Product, Integer> content){
         for (Map.Entry<Product, Integer> entry : content.entrySet()) {
-            System.out.println("Amount of: " + entry.getKey() + "is " + entry.getValue());
+            System.out.println(entry.getValue() + " copies of: " + entry.getKey().getSimpleName());
         }
     }
 
@@ -93,9 +94,9 @@ public class Viewer {
         display("Online shop made by : ");
         display("Michał, Kacper, Paweł");
     }
-    public Float getFloatInput(){
-        Float userInput = Float.parseFloat(scanner.nextLine());
-        return userInput;
+    public BigDecimal getFloatInput(){
+        BigDecimal value = new BigDecimal(scanner.nextLine());
+        return value;
     }
 
     public void displayTable(List<List<String>> table){
@@ -120,7 +121,7 @@ public class Viewer {
             temp.add(product.getPrice().toString());
             temp.add(product.getAmount().toString());
             temp.add(product.getAvailable().toString());
-            temp.add(product.getCategory());
+            temp.add(product.getCategory().getName());
 
             list.add(temp);
         }
