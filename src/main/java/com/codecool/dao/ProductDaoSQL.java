@@ -24,45 +24,37 @@ public class ProductDaoSQL implements ProductDao{
     private List<Product> productsList = new ArrayList<>();
 
 
-    public List<Integer> getProductsIds(){
-        List<Integer> ids = new ArrayList<>();
-        try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:OnlineShopDATA.db");
+public List<Integer> getProductsIds(){
+    List<Integer> ids = new ArrayList<>();
+    try {
+        Class.forName("org.sqlite.JDBC");
+        c = DriverManager.getConnection("jdbc:sqlite:OnlineShopDATA.db");
 
 
-            stmt = c.createStatement();
-            String sql;
-            sql = "SELECT * FROM Product";
-            results = stmt.executeQuery(sql);
+        stmt = c.createStatement();
+        String sql;
+        sql = "SELECT * FROM Product";
+        results = stmt.executeQuery(sql);
 
-            while (results.next()){
-                Integer id = results.getInt("ID");
-                ids.add(id);
-            }
-            results.close();
-            stmt.close();
-            c.close();
-        } catch (Exception e){
-            System.out.println("\n...\n");
-            System.out.println(e);
+        while (results.next()){
+            Integer id = results.getInt("ID");
+            ids.add(id);
         }
-        return ids;
+        results.close();
+        stmt.close();
+        c.close();
+    } catch (Exception e){
+        System.out.println("\n...\n");
+        System.out.println(e);
     }
-
-    public Product getProductById(Integer number) {
-        for (Product product : productsList) {
-            if (product.getId() == number) {
-                return product;
-            }
-        }
-        return null;
-    }
+    return ids;
+}
 
     public List<Product> getAllProducts(){
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:OnlineShopDATA.db");
+
 
             stmt = c.createStatement();
             String sql;
@@ -72,11 +64,11 @@ public class ProductDaoSQL implements ProductDao{
             while (results.next()){
                 Integer id = results.getInt("ID");
                 String name = results.getString("NAME");
-                BigDecimal price = results.getBigDecimal("PRICE");
+                Float price = results.getFloat("PRICE");
                 Integer amount = results.getInt("AMOUNT");
                 Boolean isAvailable = results.getBoolean("isAVAILABLE");
-                Category category = new Category(results.getString("CATEGORY"));
-                newProduct = new Product(id, name, price, amount, isAvailable, category);
+                String category = results.getString("CATEGORY");
+                newProduct = new Product(name, price, amount, isAvailable, category);
                 productsList.add(newProduct);
 //                view.display("id: " + id + "| name: " + name + "| price: " + price + "| amount: " + amount + "| Available?: " + isAvailable + "| category: " + category);
             }
@@ -86,8 +78,6 @@ public class ProductDaoSQL implements ProductDao{
         } catch (Exception e){
             System.out.println("\n...\n");
             System.out.println(e);
-        } finally {
-            view.display("\n");
         }
         return productsList;
     }

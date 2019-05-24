@@ -25,6 +25,7 @@ public class ShopRunner {
             case 1:
                 AdminController ac = new AdminController();
                 Admin admin = new Admin(ac);
+                admin.handleAdminMenu();
                 break;
             case 2:
                 Basket basket = new Basket();

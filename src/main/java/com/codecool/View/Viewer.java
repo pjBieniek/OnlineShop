@@ -69,6 +69,8 @@ public class Viewer {
         display("(7) Give limited discount on product");
         display("(8) See list of ongoing orders");
         display("(9) Collect feedback from customers");
+        display("(10) Exit");
+        display("\n Your choice: ");
     }
 
     public void displayCustomerMenu(){
@@ -83,6 +85,9 @@ public class Viewer {
         display("(9) Check if product is available");
         display("(10) Rate product");
         display("(11) Orders statistics");
+        display("(12) Exit");
+        display("\n Your choice: ");
+
     }
 
     public void displayCredits(){
