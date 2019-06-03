@@ -1,8 +1,9 @@
 package com.codecool.controllers;
 
 import com.codecool.dao.ProductDaoSQL;
-import com.codecool.models.*;
-import com.codecool.View.*;
+import com.codecool.models.Basket;
+import com.codecool.View.Viewer;
+import com.codecool.models.Product;
 
 import java.util.*;
 
@@ -13,8 +14,8 @@ public class CustomerController {
     private ProductDaoSQL pds = new ProductDaoSQL();
 
     public void addToBasket() {
-        view.clearScreen();
-        displayProducts();
+//        view.clearScreen();
+//        displayProducts();
         view.display("Enter id of a product You wish to add to Your basket");
         int id = view.getIntegerInput();
         Product product = pds.getProductById(id);
@@ -25,59 +26,39 @@ public class CustomerController {
 
     public void editProductQuantity() {
         view.display(basket.getProducts());
-        view.display("Enter product id: ");
-        int id = view.getIntegerInput();
-        view.display("How many copies would You like? ");
-        int number = view.getIntegerInput();
+        if (!basket.getProducts().isEmpty()){
+            view.display("Enter product id: ");
+            int id = view.getIntegerInput();
+            view.display("How many copies would You like? ");
+            int number = view.getIntegerInput();
 
-        for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
-            if (entry.getKey().getId() == id) {
-                entry.setValue(number);
-            }
-        }
+            for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
+                if (entry.getKey().getId() == id) {
+                    entry.setValue(number);
+                }
+            } }
     }
 
     public void deleteFromBasket() {
+        if (basket.getProducts().isEmpty()) {
+            view.display("\nBasket is empty\n");
+        }
         view.display(basket.getProducts());
-        view.display("Enter id of a product You want to delete: ");
-        int id = view.getIntegerInput();
-        basket.deleteProduct(basket.returnProductById(id));
+        if (!basket.getProducts().isEmpty()) {
+            view.display("Enter id of a product You want to delete: ");
+            int id = view.getIntegerInput();
+            basket.deleteProduct(basket.returnProductById(id));
+        }
     }
 
     public void showBasket() {
-        List<List<String>> database;
-        List<Product> products = new ArrayList<>();
-        for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
-            products.add(entry.getKey());
+        if (basket.getProducts().isEmpty()) {
+            view.display("\nBasket is empty\n");
         }
-//        System.out.println("products: " + products);
-        database = view.productsToString(products);
-        view.displayTable(database);
-        database.remove(database);
-    }
 
-    public void seePreviousOrders() {
-
-    }
-
-    public void showAvialableProducts() {
-
-    }
-
-    public void showCategory() {
-
-    }
-
-    public void checkAvialability() {
-        Set<String> set = new HashSet<>();
-
-    }
-
-    public void rateProduct() {
-
-    }
-
-    public void showStatistics() {
+        for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
+            view.display("\n" + entry.getValue() + " pieces of: " + entry.getKey().getName() + "\n");
+        }
 
     }
 

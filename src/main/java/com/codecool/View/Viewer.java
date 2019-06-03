@@ -78,14 +78,8 @@ public class Viewer {
         display("(2) Edit product's quantity in basket");
         display("(3) Delete from basket");
         display("(4) See basket");
-        display("(5) Place an order");
-        display("(6) See previous orders");
-        display("(7) List all products");
-        display("(8) List products from specific category");
-        display("(9) Check if product is available");
-        display("(10) Rate product");
-        display("(11) Orders statistics");
-        display("(12) Exit");
+        display("(5) Display Products");
+        display("(6) Exit");
         display("\n Your choice: ");
 
     }

@@ -14,12 +14,12 @@ public class Admin {
     }
 
     public void handleAdminMenu(){
+        view.clearScreen();
         boolean repeat = true;
         shop.data();
 
 
         while(repeat) {
-            view.clearScreen();
             view.displayAdminMenu();
             int option = view.getIntegerInput();
 
@@ -55,7 +55,6 @@ public class Admin {
                     break;
                 case 10:
                     repeat = false;
-                    break;
             }
         }
 

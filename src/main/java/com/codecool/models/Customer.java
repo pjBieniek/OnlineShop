@@ -15,12 +15,12 @@ public class Customer {
     }
 
     public void printCustomerMenu() {
+        view.clearScreen();
         boolean repeat = true;
         Basket basket = new Basket();
         CustomerController cc = new CustomerController();
 
         while(repeat) {
-            view.clearScreen();
             view.displayCustomerMenu();
             int option = view.getIntegerInput();
 
@@ -39,29 +39,10 @@ public class Customer {
                     cc.showBasket();
                     break;
                 case 5:
-
-                    break;
-                case 6:
-
-                    break;
-                case 7:
                     cc.displayProducts();
                     break;
-                case 8:
-
-                    break;
-                case 9:
-
-                    break;
-                case 10:
-
-                    break;
-                case 11:
-
-                    break;
-                case 12:
+                case 6:
                     repeat = false;
-                    break;
 
             }
         }
