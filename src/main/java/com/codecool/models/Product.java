@@ -34,6 +34,10 @@ public class Product implements Validator {
         this.category = category;
     }
 
+    public Product(){
+
+    }
+
     public String toString(){
         return "id: " + id + ", name " + name + ", price: " + price + ", amount: " + amount + ", is aviable: " + isAvailable + ", category: " + category.getName();
     }
