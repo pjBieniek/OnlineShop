@@ -34,6 +34,7 @@ public class Admin {
 
                     break;
                 case 4:
+                    shop.addNewProduct();
 
                     break;
                 case 5:

@@ -8,6 +8,7 @@ import com.codecool.models.Customer;
 import com.codecool.models.FeaturedCategory;
 import com.codecool.models.Product;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,22 @@ public class AdminController {
 
     public void deactivateAuto(Product product){
 
+    }
+
+    public void addNewProduct(){
+        view.display("Enter new product's name: ");
+        String name = view.getStringInput();
+        view.display("Enter new product's price: ");
+        BigDecimal price = view.getBigDecimalInput();
+        view.display("Enter new product's amount: ");
+        Integer amount = view.getIntegerInput();
+        view.display("Product is unavailable now. Set product available? If so, Type 'y': ");
+        Boolean isAvailable = view.getBooleanInput();
+        view.display("And categry name?: ");
+        String category = view.getStringInput();
+        Category newCategory = new Category(category);
+        Product newProduct = new Product(name, price, amount, isAvailable, newCategory);
+        sql.addProduct(newProduct);
     }
 
     public void editProduct(String name){
