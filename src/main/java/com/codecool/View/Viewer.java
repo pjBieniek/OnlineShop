@@ -83,20 +83,22 @@ public class Viewer {
         return output;
     }
     public void displayAdminMenu(){
+        display("Hello Admin!\nWhat do you want to do?\n\n");
         display("(1) Create new product category");
         display("(2) Create new featured product category");
-        display("(3) Deactivate product automatically");
+        display("(3) Delete a product");
         display("(4) Create new product");
         display("(5) Edit product");
         display("(6) Deactivate product");
         display("(7) Give limited discount on product");
         display("(8) See list of ongoing orders");
-        display("(9) Collect feedback from customers");
+        display("(9) Display products");
         display("(10) Exit");
         display("\n Your choice: ");
     }
 
     public void displayCustomerMenu(){
+        display("Hello customer!\nWhat do you want to do?\n\n");
         display("(1) Add to basket");
         display("(2) Edit product's quantity in basket");
         display("(3) Delete from basket");

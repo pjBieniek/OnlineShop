@@ -19,7 +19,7 @@ public class ProductDaoSQL implements ProductDao{
     private BigDecimal price;
     private Integer amount;
     private Boolean isAvailable;
-    private Category category;
+    private String categoryName;
     private Product newProduct;
     private List<Product> productsList = new ArrayList<>();
 
@@ -124,8 +124,8 @@ public List<Integer> getProductsIds(){
         this.price = product.getPrice();
         this.amount = product.getAmount();
         this.isAvailable = product.getAvailable();
-        this.category = product.getCategory();
-        String sql = "INSERT INTO Product VALUES (" + id + ", '" + name + "', " + price + ", " + amount + ", " + isAvailable + ", '" + category + "')";
+        this.categoryName = product.getCategory().getName();
+        String sql = "INSERT INTO Product VALUES (" + id + ", '" + name + "', " + price + ", " + amount + ", " + isAvailable + ", '" + categoryName + "')";
 
 
         try {

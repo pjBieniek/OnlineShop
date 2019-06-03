@@ -36,7 +36,7 @@ public class Product implements Validator {
     }
 
     public String toString(){
-        return "id: " + id + ", name " + name + ", price: " + price + ", amount: " + amount + ", is aviable: " + isAvailable + ", category: " + category;
+        return "id: " + id + ", name " + name + ", price: " + price + ", amount: " + amount + ", is aviable: " + isAvailable + ", category: " + category.getName();
     }
 
     private Integer generateId() {
@@ -54,7 +54,7 @@ public class Product implements Validator {
     }
 
     public String getSimpleName() {
-        return "id: " + id + ", name: " + name + ", amount: " + amount;
+        return "Product  " + id + ", \nname: " + name + ", \namount: " + amount;
     }
 
     private int getRandomNumber() {
@@ -91,5 +91,8 @@ public class Product implements Validator {
 
     public void setAmount(Integer number) {
         amount = number;
+    }
+    public void setIsAvailable(){
+        isAvailable = !isAvailable;
     }
 }
