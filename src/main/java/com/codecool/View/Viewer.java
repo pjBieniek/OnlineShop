@@ -40,40 +40,65 @@ public class Viewer {
     }
 
     public String getStringInput(){
-        boolean repeat = true;
-        String userInput;
-        while (repeat) {
-            userInput = scanner.nextLine();
-            return userInput;
-//            if (validator(userInput) == true){
-//                repeat = false;
-//            }
-//        }
-//        return userInput;
+        String userInput = "";
+        try {
+            String inputData = scanner.nextLine();
+            return inputData;
+        } catch (Exception e){
+            getStringInput();
         }
-        return "";
-    }
-
-    public Integer getIntegerInput(){
-        Integer userInput = Integer.parseInt(scanner.nextLine());
         return userInput;
     }
 
+    public Integer getIntegerInput(){
+        Integer defaultValue =0;
+        try{
+            Integer value = Integer.parseInt(scanner.nextLine());
+            return value;
+        } catch (Exception e){
+            getIntegerInput();
+        }
+        return defaultValue;
+    }
+
+    public BigDecimal getBigDecimalInput(){
+        BigDecimal defaultValue = new BigDecimal(0);
+        try{
+            BigDecimal value = new BigDecimal(scanner.nextLine());
+            return value;
+        } catch (Exception e){
+            getBigDecimalInput();
+        }
+        return defaultValue;
+    }
+
+    public Boolean getBooleanInput(){
+        Boolean output = false;
+        try {
+            Boolean userInput = scanner.nextLine().equals("y");
+            return userInput;
+        } catch (Exception e){
+            getBooleanInput();
+        }
+        return output;
+    }
     public void displayAdminMenu(){
+        display("Hello Admin!\nWhat do you want to do?\n\n");
         display("(1) Create new product category");
         display("(2) Create new featured product category");
-        display("(3) Deactivate product automatically");
+        display("(3) Delete a product");
         display("(4) Create new product");
         display("(5) Edit product");
         display("(6) Deactivate product");
         display("(7) Give limited discount on product");
         display("(8) See list of ongoing orders");
-        display("(9) Collect feedback from customers");
+        display("(9) Display products");
         display("(10) Exit");
         display("\n Your choice: ");
     }
 
     public void displayCustomerMenu(){
+        display("Hello customer!\nWhat do you want to do?\n\n");
         display("(1) Add to basket");
         display("(2) Edit product's quantity in basket");
         display("(3) Delete from basket");
@@ -88,10 +113,7 @@ public class Viewer {
         display("Online shop made by : ");
         display("Michał, Kacper, Paweł");
     }
-    public BigDecimal getFloatInput(){
-        BigDecimal value = new BigDecimal(scanner.nextLine());
-        return value;
-    }
+
 
     public void displayTable(List<List<String>> table){
         List<String> headers = new ArrayList<>();

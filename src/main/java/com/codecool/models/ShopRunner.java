@@ -4,9 +4,12 @@ import com.codecool.View.Viewer;
 import com.codecool.controllers.*;
 
 public class ShopRunner {
-    Viewer view = new Viewer();
+    Viewer view;
     private boolean repeat = true;
 
+    public ShopRunner(Viewer view){
+        this.view = view;
+    }
 
     public void run() {
         view.clearScreen();
@@ -23,8 +26,8 @@ public class ShopRunner {
         choice = view.getIntegerInput();
         switch (choice) {
             case 1:
-                AdminController ac = new AdminController();
-                Admin admin = new Admin(ac);
+//                AdminController ac = new AdminController();
+                Admin admin = new Admin();
                 admin.handleAdminMenu();
                 break;
             case 2:

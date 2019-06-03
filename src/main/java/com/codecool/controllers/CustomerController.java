@@ -14,8 +14,8 @@ public class CustomerController {
     private ProductDaoSQL pds = new ProductDaoSQL();
 
     public void addToBasket() {
-//        view.clearScreen();
-//        displayProducts();
+        view.clearScreen();
+        displayProducts();
         view.display("Enter id of a product You wish to add to Your basket");
         int id = view.getIntegerInput();
         Product product = pds.getProductById(id);
@@ -26,29 +26,23 @@ public class CustomerController {
 
     public void editProductQuantity() {
         view.display(basket.getProducts());
-        if (!basket.getProducts().isEmpty()){
-            view.display("Enter product id: ");
-            int id = view.getIntegerInput();
-            view.display("How many copies would You like? ");
-            int number = view.getIntegerInput();
+        view.display("Enter product id: ");
+        int id = view.getIntegerInput();
+        view.display("How many copies would You like? ");
+        int number = view.getIntegerInput();
 
-            for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
-                if (entry.getKey().getId() == id) {
-                    entry.setValue(number);
-                }
-            } }
+        for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
+            if (entry.getKey().getId() == id) {
+                entry.setValue(number);
+            }
+        }
     }
 
     public void deleteFromBasket() {
-        if (basket.getProducts().isEmpty()) {
-            view.display("\nBasket is empty\n");
-        }
         view.display(basket.getProducts());
-        if (!basket.getProducts().isEmpty()) {
-            view.display("Enter id of a product You want to delete: ");
-            int id = view.getIntegerInput();
-            basket.deleteProduct(basket.returnProductById(id));
-        }
+        view.display("Enter id of a product You want to delete: ");
+        int id = view.getIntegerInput();
+        basket.deleteProduct(basket.returnProductById(id));
     }
 
     public void showBasket() {
@@ -59,6 +53,31 @@ public class CustomerController {
         for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
             view.display("\n" + entry.getValue() + " pieces of: " + entry.getKey().getName() + "\n");
         }
+
+    }
+
+    public void seePreviousOrders() {
+
+    }
+
+    public void showAvialableProducts() {
+
+    }
+
+    public void showCategory() {
+
+    }
+
+    public void checkAvialability() {
+        Set<String> set = new HashSet<>();
+
+    }
+
+    public void rateProduct() {
+
+    }
+
+    public void showStatistics() {
 
     }
 

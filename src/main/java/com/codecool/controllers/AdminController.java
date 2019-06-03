@@ -8,15 +8,20 @@ import com.codecool.models.Customer;
 import com.codecool.models.FeaturedCategory;
 import com.codecool.models.Product;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdminController {
-    ProductDaoSQL sql = new ProductDaoSQL();
-    Viewer view = new Viewer();
-    public Category createCategory(){
+    private ProductDaoSQL sql = new ProductDaoSQL();
+    private Viewer view = new Viewer();
+    private List<List<String>> productsToPrint;
 
-     return null;
+    public AdminController(){
+    }
+
+    public Category createCategory(){
+        return null;
     }
 
     public FeaturedCategory createFeaturedCategory(){
@@ -27,12 +32,31 @@ public class AdminController {
 
     }
 
-    public void deactivateAuto(Product product){
+    public void deleteProduct(){
+        sql.deleteProduct();
+        view.display("\n\ndeleted succesfully.");
+    }
 
+    public void addNewProduct(){
+        view.display("Enter new product's name: ");
+        String name = view.getStringInput();
+        view.display("Enter new product's price: ");
+        BigDecimal price = view.getBigDecimalInput();
+        view.display("Enter new product's amount: ");
+        Integer amount = view.getIntegerInput();
+        view.display("Product is unavailable now. Set product available? If so, Type 'y': ");
+        Boolean isAvailable = view.getBooleanInput();
+        view.display("And categry name?: ");
+        String category = view.getStringInput();
+        Category newCategory = new Category(category);
+        Product newProduct = new Product(name, price, amount, isAvailable, newCategory);
+        sql.addProduct(newProduct);
+        view.display("\n\n" + name + " added succesfully");
     }
 
     public void editProduct(String name){
         sql.updateProduct(name);
+        view.display("\n\n" + name + " edited succesfully");
     }
 
     public void deactivateProduct(Integer id){
@@ -56,9 +80,7 @@ public class AdminController {
     }
 
     public void data(){
-        List<List<String>> database;
-        database = view.productsToString(sql.getAllProducts());
-        view.displayTable(database);
-        database.remove(database);
+        productsToPrint = view.productsToString(sql.getAllProducts());
+        view.displayTable(productsToPrint);
     }
 }

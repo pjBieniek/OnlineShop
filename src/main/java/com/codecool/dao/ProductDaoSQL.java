@@ -19,7 +19,7 @@ public class ProductDaoSQL implements ProductDao{
     private BigDecimal price;
     private Integer amount;
     private Boolean isAvailable;
-    private String category;
+    private String categoryName;
     private Product newProduct;
     private List<Product> productsList = new ArrayList<>();
 
@@ -82,6 +82,15 @@ public List<Integer> getProductsIds(){
         return productsList;
     }
 
+    public Product getProductById(Integer number) {
+        for (Product product : productsList) {
+            if (product.getId() == number) {
+                return product;
+            }
+        }
+        return null;
+    }
+
 
     public void updateProduct(String currentName){
 
@@ -118,12 +127,14 @@ public List<Integer> getProductsIds(){
         }
     }
 
-    public void addProduct(){
-        view.display("Adding... ");
-        getDataFromUser();
-
-
-        String sql = "INSERT INTO Product VALUES (" + id + ", '" + name + "', " + price + ", " + amount + ", " + isAvailable + ", '" + category + "')";
+    public void addProduct(Product product){
+        this.id = product.getId();
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.amount = product.getAmount();
+        this.isAvailable = product.getAvailable();
+        this.categoryName = product.getCategory().getName();
+        String sql = "INSERT INTO Product VALUES (" + id + ", '" + name + "', " + price + ", " + amount + ", " + isAvailable + ", '" + categoryName + "')";
 
 
         try {
@@ -140,7 +151,7 @@ public List<Integer> getProductsIds(){
         view.display("Enter new name: ");
         name = view.getStringInput();
         view.display("Enter new price: ");
-        price = view.getFloatInput();
+        price = view.getBigDecimalInput();
         view.display("Enter new amount: ");
         amount = view.getIntegerInput();
     }
@@ -155,15 +166,6 @@ public List<Integer> getProductsIds(){
             view.display(e.getMessage());
         }
         return conn;
-    }
-
-    public Product getProductById(Integer number) {
-        for (Product product : productsList) {
-            if (product.getId() == number) {
-                return product;
-            }
-        }
-        return null;
     }
 
 }
