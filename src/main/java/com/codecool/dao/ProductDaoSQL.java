@@ -82,6 +82,15 @@ public List<Integer> getProductsIds(){
         return productsList;
     }
 
+    public Product getProductById(Integer number) {
+        for (Product product : productsList) {
+            if (product.getId() == number) {
+                return product;
+            }
+        }
+        return null;
+    }
+
 
     public void updateProduct(String currentName){
 
@@ -157,15 +166,6 @@ public List<Integer> getProductsIds(){
             view.display(e.getMessage());
         }
         return conn;
-    }
-
-    public Product getProductById(Integer number) {
-        for (Product product : productsList) {
-            if (product.getId() == number) {
-                return product;
-            }
-        }
-        return null;
     }
 
 }

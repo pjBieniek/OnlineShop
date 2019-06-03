@@ -1,5 +1,6 @@
 package com.codecool.models;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
 import java.math.BigDecimal;
@@ -14,8 +15,6 @@ public class Product implements Validator {
     private Integer amount;
     private Boolean isAvailable;
     private Category category;
-
-    public Product(){}
 
     public Product(String name, BigDecimal price, Integer amount, Boolean isAvailable, Category category) {
         id = generateId();
@@ -52,6 +51,10 @@ public class Product implements Validator {
         }
         return randomId;
     }
+
+
+
+
 
     public String getSimpleName() {
         return "Product  " + id + ", \nname: " + name + ", \namount: " + amount;
