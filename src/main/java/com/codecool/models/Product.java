@@ -15,6 +15,8 @@ public class Product implements Validator {
     private Integer amount;
     private Boolean isAvailable;
     private Category category;
+    private Boolean auto = false;
+    private ProductDaoSQL sql = new ProductDaoSQL();
 
     public Product(String name, BigDecimal price, Integer amount, Boolean isAvailable, Category category) {
         id = generateId();
@@ -23,6 +25,7 @@ public class Product implements Validator {
         this.amount = amount;
         this.isAvailable = isAvailable;
         this.category = category;
+        checkIfAutoDeactivated(id);
     }
 
     public Product(Integer id, String name, BigDecimal price, Integer amount, Boolean isAvailable, Category category) {
@@ -32,12 +35,31 @@ public class Product implements Validator {
         this.amount = amount;
         this.isAvailable = isAvailable;
         this.category = category;
+        checkIfAutoDeactivated(this.id);
     }
 
     public Product(){
-
+        checkIfAutoDeactivated(id);
     }
 
+    private void checkIfAutoDeactivated(Integer id){
+        if(auto){
+            handleautoDeactivate(id);
+            setIsAvailable(false);
+        }
+    }
+
+
+    public void setAuto(Boolean auto) {
+        this.auto = auto;
+    }
+
+    public void handleautoDeactivate(Integer id){
+        if (amount == 0){
+            sql.deactivateProduct(id);
+//            setIsAvailable(false);
+        }
+    }
     public String toString(){
         return "id: " + id + ", name " + name + ", price: " + price + ", amount: " + amount + ", is aviable: " + isAvailable + ", category: " + category.getName();
     }
@@ -55,9 +77,6 @@ public class Product implements Validator {
         }
         return randomId;
     }
-
-
-
 
 
     public String getSimpleName() {
@@ -99,7 +118,7 @@ public class Product implements Validator {
     public void setAmount(Integer number) {
         amount = number;
     }
-    public void setIsAvailable(){
-        isAvailable = !isAvailable;
+    public void setIsAvailable(Boolean available){
+        this.isAvailable = available;
     }
 }

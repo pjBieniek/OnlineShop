@@ -113,6 +113,22 @@ public List<Integer> getProductsIds(){
         }
     }
 
+    public void deactivateProduct(Integer id){
+
+        String sql = "UPDATE Product SET isAVAILABLE = ? WHERE ID = ? ";
+
+        try {
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setBoolean(1, false);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e){
+            view.display(e.getMessage());
+        }
+    }
+
     public void deleteProduct(){
         view.display("Enter product id: ");
         int id = view.getIntegerInput();

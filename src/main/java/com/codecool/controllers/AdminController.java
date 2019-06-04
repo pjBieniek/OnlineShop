@@ -16,6 +16,7 @@ public class AdminController {
     private ProductDaoSQL sql = new ProductDaoSQL();
     private Viewer view = new Viewer();
     private List<List<String>> productsToPrint;
+    private Product product;
 
     public AdminController(){
     }
@@ -34,6 +35,7 @@ public class AdminController {
 
     public void deleteProduct(){
         sql.deleteProduct();
+        updateData();
         view.display("\n\ndeleted succesfully.");
     }
 
@@ -51,17 +53,31 @@ public class AdminController {
         Category newCategory = new Category(category);
         Product newProduct = new Product(name, price, amount, isAvailable, newCategory);
         sql.addProduct(newProduct);
+        updateData();
         view.display("\n\n" + name + " added succesfully");
     }
 
     public void editProduct(String name){
         sql.updateProduct(name);
+        updateData();
         view.display("\n\n" + name + " edited succesfully");
     }
 
     public void deactivateProduct(Integer id){
-
+        sql.deactivateProduct(id);
+        updateData();
+        view.display("\n\n" + id + " deactivated succesfully");
     }
+
+    public void autoDeactivateProduct(){
+        view.display("Enter product id: ");
+        Integer id = view.getIntegerInput();
+        product.setAuto(true);
+        updateData();
+        view.display("\n\n" + product.getName() + " deactivated succesfully");
+    }
+
+
 
     public void manageDiscount(Product product){
 
@@ -80,7 +96,11 @@ public class AdminController {
     }
 
     public void data(){
-        productsToPrint = view.productsToString(sql.getAllProducts());
+        updateData();
         view.displayTable(productsToPrint);
+    }
+
+    private void updateData(){
+        productsToPrint = view.productsToString(sql.getAllProducts());
     }
 }

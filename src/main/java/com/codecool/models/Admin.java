@@ -49,10 +49,14 @@ public class Admin {
                     view.getStringInput();
                     break;
                 case 6:
+                    view.display("Enter product id: ");
+                    Integer id = view.getIntegerInput();
+                    shop.deactivateProduct(id);
                     view.display("Press ENTER to proceed to menu");
                     view.getStringInput();
                     break;
                 case 7:
+                    shop.autoDeactivateProduct();
                     view.display("Press ENTER to proceed to menu");
                     view.getStringInput();
                     break;

@@ -90,7 +90,7 @@ public class Viewer {
         display("(4) Create new product");
         display("(5) Edit product");
         display("(6) Deactivate product");
-        display("(7) Give limited discount on product");
+        display("(7) Deactivate automatically");
         display("(8) See list of ongoing orders");
         display("(9) Display products");
         display("(10) Exit");
