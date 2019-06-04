@@ -4,11 +4,13 @@ import com.codecool.View.Viewer;
 import com.codecool.controllers.*;
 
 public class ShopRunner {
-    Viewer view;
+    private Viewer view;
+    private Basket basket;
     private boolean repeat = true;
 
     public ShopRunner(Viewer view){
         this.view = view;
+        this.basket = new Basket(view);
     }
 
     public void run() {
@@ -27,12 +29,12 @@ public class ShopRunner {
         switch (choice) {
             case 1:
 //                AdminController ac = new AdminController();
-                Admin admin = new Admin();
+                Admin admin = new Admin(view);
                 admin.handleAdminMenu();
                 break;
             case 2:
-                Basket basket = new Basket();
-                Customer customer = new Customer(basket);
+                Basket basket = new Basket(view);
+                Customer customer = new Customer(basket, view);
                 customer.printCustomerMenu();
                 break;
             case 3:

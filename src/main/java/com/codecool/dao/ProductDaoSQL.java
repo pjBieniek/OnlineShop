@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoSQL implements ProductDao{
-    private Viewer view = new Viewer();
+    private Viewer view;
     private ResultSet results;
     private Connection c = null;
     private Statement stmt = null;
@@ -21,8 +21,17 @@ public class ProductDaoSQL implements ProductDao{
     private Boolean isAvailable;
     private String categoryName;
     private Product newProduct;
-    private List<Product> productsList = new ArrayList<>();
+    private List<Product> productsList;
 
+
+    public ProductDaoSQL(Viewer view){
+        this.view = view;
+    }
+    public ProductDaoSQL(Product product, Viewer view){
+        this.newProduct = product;
+        this.view = view;
+        this.productsList = new ArrayList<>();
+    }
 
 public List<Integer> getProductsIds(){
     List<Integer> ids = new ArrayList<>();

@@ -7,11 +7,13 @@ import com.codecool.dao.ProductDao;
 import java.util.List;
 
 public class Admin {
-    private AdminController shop = new AdminController();
-    private Viewer view = new Viewer();
+    private AdminController shop;
+    private Viewer view;
 
 
-    public Admin() {
+    public Admin(Viewer view) {
+        this.view = view;
+        shop = new AdminController(view);
 
     }
 

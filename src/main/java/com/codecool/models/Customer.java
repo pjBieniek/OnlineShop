@@ -8,17 +8,20 @@ public class Customer {
 
     private String userName;
     private Basket basket;
-    private Viewer view = new Viewer();
+    private CustomerController cc; // <--
+    private Viewer view;
 
-    public Customer(Basket basket) {
+    public Customer(Basket basket, Viewer view) {
         this.basket = basket;
+        this.view = view;
+        this.cc = new CustomerController(basket, view); // <--
     }
 
     public void printCustomerMenu() {
         view.clearScreen();
         boolean repeat = true;
-        Basket basket = new Basket();
-        CustomerController cc = new CustomerController();
+        Basket basket = new Basket(view);
+//        CustomerController cc = new CustomerController();
 
         while(repeat) {
             view.displayCustomerMenu();

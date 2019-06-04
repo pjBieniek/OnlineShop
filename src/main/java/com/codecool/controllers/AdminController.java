@@ -13,12 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminController {
-    private ProductDaoSQL sql = new ProductDaoSQL();
-    private Viewer view = new Viewer();
+    private ProductDaoSQL sql;
+    private Viewer view;
     private List<List<String>> productsToPrint;
     private Product product;
 
-    public AdminController(){
+    public AdminController(Viewer view){
+        this.view = view;
+        this.product = new Product();
+        this.sql = new ProductDaoSQL(product, view);
     }
 
     public Category createCategory(){

@@ -3,15 +3,25 @@ package com.codecool.controllers;
 import com.codecool.dao.ProductDaoSQL;
 import com.codecool.models.Basket;
 import com.codecool.View.Viewer;
+import com.codecool.models.Customer;
 import com.codecool.models.Product;
 
 import java.util.*;
 
 public class CustomerController {
 
-    private Viewer view = new Viewer();
-    private Basket basket = new Basket();
-    private ProductDaoSQL pds = new ProductDaoSQL();
+    private Viewer view;
+    private Basket basket;
+    private ProductDaoSQL pds;
+    private Product product;
+
+    public CustomerController(Basket basket, Viewer view){
+        this.product = new Product();
+        this.view = view;
+        this.pds = new ProductDaoSQL(product, this.view);
+        this.basket = basket;
+
+    }
 
     public void addToBasket() {
         view.clearScreen();
