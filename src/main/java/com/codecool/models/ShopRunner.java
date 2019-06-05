@@ -1,12 +1,20 @@
 package com.codecool.models;
 
 import com.codecool.View.Viewer;
-import com.codecool.controllers.*;
+
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 public class ShopRunner {
     private Viewer view;
     private Basket basket;
     private boolean repeat = true;
+    private String password;
 
     public ShopRunner(Viewer view){
         this.view = view;
@@ -28,9 +36,10 @@ public class ShopRunner {
         choice = view.getIntegerInput();
         switch (choice) {
             case 1:
-//                AdminController ac = new AdminController();
                 Admin admin = new Admin(view);
-                admin.handleAdminMenu();
+                if (adminLogin()){
+                    admin.handleAdminMenu();
+                }
                 break;
             case 2:
                 Basket basket = new Basket(view);
@@ -40,6 +49,25 @@ public class ShopRunner {
             case 3:
                 repeat = false;
                 break;
+        }
+    }
+
+    private Boolean adminLogin(){
+        try {
+            this.password = Files.readString(Paths.get("/home/pawel/Dokumenty/codecool/Java/TW - 5 week/OnlineShop/src/resources/pass.txt"));
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+
+
+        Scanner getPass = new Scanner(System.in);
+        String pass = getPass.nextLine();
+
+        if (pass.equals(password)){
+            return true;
+        } else {
+            System.out.println("oops, wrong password");
+            return false;
         }
     }
 }

@@ -25,6 +25,7 @@ hs_err_pid*
 .idea
 out/
 target/
+*txt
 *.iml
 .project
 bin/
