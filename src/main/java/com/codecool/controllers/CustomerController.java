@@ -35,14 +35,14 @@ public class CustomerController {
     }
 
     public void editProductQuantity() {
-        view.display(basket.getProducts());
+        basket.showBasket();
         view.display("Enter product id: ");
-        int id = view.getIntegerInput();
+        int i = view.getIntegerInput();
         view.display("How many copies would You like? ");
         int number = view.getIntegerInput();
 
         for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
-            if (entry.getKey().getId() == id) {
+            if (entry.getKey().getId() ==  i ) {
                 entry.setValue(number);
             }
         }

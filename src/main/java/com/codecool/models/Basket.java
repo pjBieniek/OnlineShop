@@ -33,8 +33,13 @@ public class Basket {
         products.remove(product);
     }
 
-    public Map<Product, Integer> showBasket() {
-        return products;
+    public void showBasket() {
+        int i = 1;
+        for (Map.Entry<Product, Integer> entry : products.entrySet()){
+            view.display("\n[" + i + "] \n" + entry.getKey().getSimpleName() + " in magazine now");
+            view.display("Amount in basket: " + entry.getValue().toString() + "\n");
+            i++;
+        }
     }
 
     public Map<Product, Integer> getProducts() {

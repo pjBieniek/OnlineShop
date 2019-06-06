@@ -34,7 +34,6 @@ public class Customer {
                     cc.addToBasket();
                     break;
                 case 2:
-                    cc.showBasket();
                     cc.editProductQuantity();
                     break;
                 case 3:

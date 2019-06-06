@@ -80,7 +80,7 @@ public class Product implements Validator {
 
 
     public String getSimpleName() {
-        return "Product  " + id + ", \nname: " + name + ", \namount: " + amount;
+        return "Product id: " + id + ", \nname: " + name + ", \namount: " + amount;
     }
 
     private int getRandomNumber() {
