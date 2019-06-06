@@ -3,7 +3,6 @@ package com.codecool.controllers;
 import com.codecool.dao.ProductDaoSQL;
 import com.codecool.models.Basket;
 import com.codecool.View.Viewer;
-import com.codecool.models.Customer;
 import com.codecool.models.Product;
 
 import java.util.*;

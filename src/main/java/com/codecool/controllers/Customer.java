@@ -1,7 +1,8 @@
-package com.codecool.models;
+package com.codecool.controllers;
 
 import com.codecool.View.Viewer;
 import com.codecool.controllers.CustomerController;
+import com.codecool.models.Basket;
 
 public class Customer {
 

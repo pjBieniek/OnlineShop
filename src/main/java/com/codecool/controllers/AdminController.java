@@ -1,15 +1,12 @@
 package com.codecool.controllers;
 
 import com.codecool.View.Viewer;
-import com.codecool.dao.ProductDao;
 import com.codecool.dao.ProductDaoSQL;
 import com.codecool.models.Category;
-import com.codecool.models.Customer;
 import com.codecool.models.FeaturedCategory;
 import com.codecool.models.Product;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdminController {

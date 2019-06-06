@@ -1,6 +1,7 @@
-package com.codecool.models;
+package com.codecool;
 
 import com.codecool.View.Viewer;
+import com.codecool.controllers.ShopRunner;
 
 
 public class OnlineShop {
