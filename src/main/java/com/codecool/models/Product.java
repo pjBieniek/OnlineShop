@@ -16,7 +16,7 @@ public class Product implements Validator {
     private Boolean isAvailable;
     private Category category;
     private Boolean auto = false;
-    private ProductDaoSQL sql = new ProductDaoSQL();
+    private ProductDaoSQL sql = new ProductDaoSQL(view);
 
     public Product(String name, BigDecimal price, Integer amount, Boolean isAvailable, Category category) {
         id = generateId();
@@ -65,8 +65,8 @@ public class Product implements Validator {
     }
 
     private Integer generateId() {
-        ProductDaoSQL pds = new ProductDaoSQL();
-        List<Integer> usedIds = pds.getProductsIds();
+//        ProductDaoSQL pds = new ProductDaoSQL(view);
+        List<Integer> usedIds = sql.getProductsIds();
         boolean repeat = true;
         int randomId = 0;
         while (repeat) {
@@ -80,7 +80,7 @@ public class Product implements Validator {
 
 
     public String getSimpleName() {
-        return "Product  " + id + ", \nname: " + name + ", \namount: " + amount;
+        return "Product id: " + id + ", \nname: " + name + ", \namount: " + amount;
     }
 
     private int getRandomNumber() {

@@ -13,12 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminController {
-    private ProductDaoSQL sql = new ProductDaoSQL();
-    private Viewer view = new Viewer();
+    private ProductDaoSQL sql;
+    private Viewer view;
     private List<List<String>> productsToPrint;
     private Product product;
 
-    public AdminController(){
+    public AdminController(Viewer view){
+        this.view = view;
+        this.product = new Product();
+        this.sql = new ProductDaoSQL(product, view);
     }
 
     public Category createCategory(){
@@ -35,7 +38,7 @@ public class AdminController {
 
     public void deleteProduct(){
         sql.deleteProduct();
-        updateData();
+//        updateData();
         view.display("\n\ndeleted succesfully.");
     }
 
@@ -53,19 +56,19 @@ public class AdminController {
         Category newCategory = new Category(category);
         Product newProduct = new Product(name, price, amount, isAvailable, newCategory);
         sql.addProduct(newProduct);
-        updateData();
+//        updateData();
         view.display("\n\n" + name + " added succesfully");
     }
 
     public void editProduct(String name){
         sql.updateProduct(name);
-        updateData();
+//        updateData();
         view.display("\n\n" + name + " edited succesfully");
     }
 
     public void deactivateProduct(Integer id){
         sql.deactivateProduct(id);
-        updateData();
+//        updateData();
         view.display("\n\n" + id + " deactivated succesfully");
     }
 
@@ -73,7 +76,7 @@ public class AdminController {
         view.display("Enter product id: ");
         Integer id = view.getIntegerInput();
         product.setAuto(true);
-        updateData();
+//        updateData();
         view.display("\n\n" + product.getName() + " deactivated succesfully");
     }
 
@@ -96,11 +99,12 @@ public class AdminController {
     }
 
     public void data(){
-        updateData();
-        view.displayTable(productsToPrint);
+//        updateData();
+//        view.displayTable(productsToPrint);
+        sql.productsToPrint();
     }
 
-    private void updateData(){
-        productsToPrint = view.productsToString(sql.getAllProducts());
-    }
+//    private void updateData(){
+//        productsToPrint = view.productsToString(sql.getAllProducts());
+//    }
 }

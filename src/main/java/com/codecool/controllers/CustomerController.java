@@ -3,15 +3,25 @@ package com.codecool.controllers;
 import com.codecool.dao.ProductDaoSQL;
 import com.codecool.models.Basket;
 import com.codecool.View.Viewer;
+import com.codecool.models.Customer;
 import com.codecool.models.Product;
 
 import java.util.*;
 
 public class CustomerController {
 
-    private Viewer view = new Viewer();
-    private Basket basket = new Basket();
-    private ProductDaoSQL pds = new ProductDaoSQL();
+    private Viewer view;
+    private Basket basket;
+    private ProductDaoSQL pds;
+    private Product product;
+
+    public CustomerController(Basket basket, Viewer view){
+        this.product = new Product();
+        this.view = view;
+        this.pds = new ProductDaoSQL(product, this.view);
+        this.basket = basket;
+
+    }
 
     public void addToBasket() {
         view.clearScreen();
@@ -25,14 +35,14 @@ public class CustomerController {
     }
 
     public void editProductQuantity() {
-        view.display(basket.getProducts());
+        basket.showBasket();
         view.display("Enter product id: ");
-        int id = view.getIntegerInput();
+        int i = view.getIntegerInput();
         view.display("How many copies would You like? ");
         int number = view.getIntegerInput();
 
         for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
-            if (entry.getKey().getId() == id) {
+            if (entry.getKey().getId() ==  i ) {
                 entry.setValue(number);
             }
         }
@@ -40,20 +50,19 @@ public class CustomerController {
 
     public void deleteFromBasket() {
         view.display(basket.getProducts());
-        view.display("Enter id of a product You want to delete: ");
+        view.display("Enter id of a product You want delete: ");
         int id = view.getIntegerInput();
         basket.deleteProduct(basket.returnProductById(id));
     }
 
     public void showBasket() {
         if (basket.getProducts().isEmpty()) {
-            view.display("\nBasket is empty\n");
+            view.display("\nBasket is empty");
+        } else {
+            for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
+                view.display("Amount: " + entry.getValue() + " | Title: " + entry.getKey().getName());
+            }
         }
-
-        for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
-            view.display("\n" + entry.getValue() + " pieces of: " + entry.getKey().getName() + "\n");
-        }
-
     }
 
     public void seePreviousOrders() {
@@ -82,10 +91,11 @@ public class CustomerController {
     }
 
     public void displayProducts() {
-        List<List<String>> database;
-        database = view.productsToString(pds.getAllProducts());
-        view.displayTable(database);
-        database.remove(database);
+//        List<List<String>> database;
+//        database = view.productsToString(pds.getAllProducts());
+//        view.displayTable(database);
+//        database.remove(database);
+        pds.productsToPrint();
     }
 
 }

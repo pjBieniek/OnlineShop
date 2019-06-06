@@ -83,7 +83,7 @@ public class Viewer {
         return output;
     }
     public void displayAdminMenu(){
-        display("Hello Admin!\nWhat do you want to do?\n\n");
+        display("\n\nWhat do you want to do?\n");
         display("(1) Create new product category");
         display("(2) Create new featured product category");
         display("(3) Delete a product");
@@ -98,7 +98,7 @@ public class Viewer {
     }
 
     public void displayCustomerMenu(){
-        display("Hello customer!\nWhat do you want to do?\n\n");
+        display("\n\nWhat do you want to do?\n");
         display("(1) Add to basket");
         display("(2) Edit product's quantity in basket");
         display("(3) Delete from basket");
@@ -111,7 +111,7 @@ public class Viewer {
 
     public void displayCredits(){
         display("Online shop made by : ");
-        display("Michał, Kacper, Paweł");
+        display("Michał, Paweł");
     }
 
 
