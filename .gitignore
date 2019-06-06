@@ -73,3 +73,5 @@ fabric.properties
 src/resources/
 /target/
 .vscode
+.settings
+.classpath
