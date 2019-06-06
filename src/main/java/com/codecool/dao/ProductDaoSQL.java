@@ -52,9 +52,10 @@ public List<Integer> getProductsIds(){
         results.close();
         stmt.close();
         c.close();
-    } catch (Exception e){
-        System.out.println("\n...\n");
-        System.out.println(e);
+    } catch (ClassNotFoundException e){
+        view.display(e.getMessage());
+    } catch (SQLException e){
+        view.display(e.getMessage());
     }
     return ids;
 }
@@ -84,9 +85,10 @@ public List<Integer> getProductsIds(){
             results.close();
             stmt.close();
             c.close();
-        } catch (Exception e){
-            System.out.println("\n...\n");
-            System.out.println(e);
+        } catch (ClassNotFoundException e){
+            view.display(e.getMessage());
+        } catch (SQLException e){
+            view.display(e.getMessage());
         }
         return productsList;
     }
@@ -147,7 +149,7 @@ public List<Integer> getProductsIds(){
             Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
-        } catch (Exception e){
+        } catch (SQLException e){
             view.display(e.getMessage());
         }
     }
@@ -167,7 +169,7 @@ public List<Integer> getProductsIds(){
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
 
-        } catch (Exception e){
+        } catch (SQLException e){
             view.display(e.getMessage());
         }
     }
@@ -187,7 +189,9 @@ public List<Integer> getProductsIds(){
         try {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection(url);
-        } catch (Exception e){
+        } catch (ClassNotFoundException e){
+            view.display(e.getMessage());
+        } catch (SQLException e){
             view.display(e.getMessage());
         }
         return conn;

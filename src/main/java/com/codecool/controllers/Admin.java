@@ -1,4 +1,4 @@
-package com.codecool.models;
+package com.codecool.controllers;
 
 import com.codecool.View.Viewer;
 import com.codecool.controllers.AdminController;
