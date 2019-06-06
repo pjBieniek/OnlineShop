@@ -6,8 +6,6 @@ import com.codecool.View.Viewer;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class ShopRunner {
@@ -36,14 +34,14 @@ public class ShopRunner {
         choice = view.getIntegerInput();
         switch (choice) {
             case 1:
-                Admin admin = new Admin(view);
+                Admin admin = new Admin();
                 if (adminLogin()){
                     admin.handleAdminMenu();
                 }
                 break;
             case 2:
                 Basket basket = new Basket(view);
-                Customer customer = new Customer(basket, view);
+                Customer customer = new Customer(basket);
                 customer.printCustomerMenu();
                 break;
             case 3:

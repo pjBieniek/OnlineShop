@@ -6,25 +6,27 @@ import com.codecool.controllers.CustomerController;
 public class Customer {
 
 
-    private String userName;
+//    private String userName;
     private Basket basket;
-    private CustomerController cc; // <--
+//    private CustomerController cc; // <--
     private Viewer view;
+    private boolean repeat = true;
 
-    public Customer(Basket basket, Viewer view) {
+    public Customer(Basket basket) {
         this.basket = basket;
-        this.view = view;
-        this.cc = new CustomerController(basket, view); // <--
+        this.view = new Viewer();
+//        this.cc = new CustomerController(basket, view); // <--
     }
 
     public void printCustomerMenu() {
         view.clearScreen();
-        boolean repeat = true;
+        view.display("Hello customer!");
         Basket basket = new Basket(view);
 //        CustomerController cc = new CustomerController();
 
         while(repeat) {
             view.displayCustomerMenu();
+            CustomerController cc = new CustomerController(basket, view);
             int option = view.getIntegerInput();
 
             switch (option) {
@@ -43,6 +45,7 @@ public class Customer {
                     break;
                 case 5:
                     cc.displayProducts();
+
                     break;
                 case 6:
                     repeat = false;

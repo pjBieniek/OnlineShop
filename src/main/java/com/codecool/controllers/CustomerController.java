@@ -50,20 +50,19 @@ public class CustomerController {
 
     public void deleteFromBasket() {
         view.display(basket.getProducts());
-        view.display("Enter id of a product You want to delete: ");
+        view.display("Enter id of a product You want delete: ");
         int id = view.getIntegerInput();
         basket.deleteProduct(basket.returnProductById(id));
     }
 
     public void showBasket() {
         if (basket.getProducts().isEmpty()) {
-            view.display("\nBasket is empty\n");
+            view.display("\nBasket is empty");
+        } else {
+            for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
+                view.display("Amount: " + entry.getValue() + " | Title: " + entry.getKey().getName());
+            }
         }
-
-        for (Map.Entry<Product, Integer> entry : basket.getProducts().entrySet()) {
-            view.display("\n" + entry.getValue() + " pieces of: " + entry.getKey().getName() + "\n");
-        }
-
     }
 
     public void seePreviousOrders() {
@@ -92,10 +91,11 @@ public class CustomerController {
     }
 
     public void displayProducts() {
-        List<List<String>> database;
-        database = view.productsToString(pds.getAllProducts());
-        view.displayTable(database);
-        database.remove(database);
+//        List<List<String>> database;
+//        database = view.productsToString(pds.getAllProducts());
+//        view.displayTable(database);
+//        database.remove(database);
+        pds.productsToPrint();
     }
 
 }

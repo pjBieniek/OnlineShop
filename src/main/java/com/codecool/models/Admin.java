@@ -7,20 +7,20 @@ import com.codecool.dao.ProductDao;
 import java.util.List;
 
 public class Admin {
-    private AdminController shop;
     private Viewer view;
+    private boolean repeat = true;
 
 
-    public Admin(Viewer view) {
-        this.view = view;
-        shop = new AdminController(view);
+    public Admin() {
+        this.view = new Viewer();
 
     }
 
     public void handleAdminMenu(){
-        boolean repeat = true;
+        view.clearScreen();
+        view.display("Hello admin!");
         while(repeat) {
-            view.clearScreen();
+            AdminController shop = new AdminController(view);
             view.displayAdminMenu();
             int option = view.getIntegerInput();
 

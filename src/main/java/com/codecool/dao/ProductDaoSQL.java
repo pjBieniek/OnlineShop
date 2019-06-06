@@ -193,4 +193,11 @@ public List<Integer> getProductsIds(){
         return conn;
     }
 
+    public void productsToPrint(){
+        List<List<String>> productsToPrint;
+        productsToPrint = view.productsToString(getAllProducts());
+        view.displayTable(productsToPrint);
+        productsToPrint.clear();
+    }
+
 }
