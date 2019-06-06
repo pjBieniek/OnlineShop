@@ -13,7 +13,6 @@ public class Admin {
 
     public Admin() {
         this.view = new Viewer();
-
     }
 
     public void handleAdminMenu(){
